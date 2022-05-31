@@ -13,11 +13,36 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('instructionletter', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('detail');
-            $table->timestamps();
+            $table->string('customerId'); //customer
+            $table->string('address')->nullable(); //tipo de servicio
+            $table->string('rfc')->nullable(); //incoterm
+            $table->string('email')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('type_service');
+            $table->string('reference')->nullable();
+            $table->enum("incoterm", ['EXW', 'FCA', 'CPT', 'CIP', 'DAP', 'DPU', 'DDP', 'CFR', 'FOB', 'FAS', 'CIF']);
+            $table->string('type_equipment');
+            $table->string('pickup_address');
+            $table->string('pol');
+            $table->string('pod');
+            $table->string('delivery_address');
+            $table->string('description');
+            $table->string('tariff');
+            $table->string('type_packaging');
+            $table->string('volume');
+            $table->string('weight')->nullable();;
+            $table->string('cbm');
+            $table->string('quantity')->nullable();
+            $table->string('lenght')->nullable();
+            $table->string('width')->nullable();
+            $table->string('height')->nullable();
+            $table->string('special_description')->nullable();
+            //timestamps
+            $table->timestamp('createdAt')->default(DB::raw('CURRENT_TIMESTAMP'));;
+            $table->timestamp('updatedAt')->default(DB::raw('CURRENT_TIMESTAMP'));;
+            $table->string('createdBy')->nullable();
         });
     }
 
@@ -28,6 +53,6 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('instructionletter');
     }
 }

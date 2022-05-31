@@ -22,8 +22,39 @@ class ProductController extends BaseController
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            'name' => 'required',
-            'detail' => 'required',
+            //1
+            'customerId'=> 'integer|required|min:1',
+            'address'=> 'nullable',
+            'rfc' => 'nullable',
+            'email'=> 'email|nullable',
+            'phone_number'=> 'string|nullable',
+            //2
+            'type_service'=> 'integer|required|min:1|max:6',
+            'reference'=> 'nullable',
+            'incoterm'=> 'in:EXW,FCA,CPT,CIP,DAP,DPU,DDP,CFR,FOB,FAS,CIF|required',
+            'type_equipment'=> 'string|required',
+            'pickup_address'=> 'string|required',
+            'pol'=> 'string|required',
+            'pod'=> 'string|required',
+            'delivery_address'=> 'required',
+            //3
+            'description'=> 'required',
+            'tariff'=> 'required|min:8|max:10',
+            'type_packaging'=> 'required',
+            'volume'=> 'numeric|required',
+            'weight'=> 'numeric|nullable',
+            'cbm'=> 'numeric|required',
+            'quantity'=> 'integer|nullable',
+            //4
+            'lenght'=> 'numeric|nullable',
+            'width'=> 'numeric|nullable',
+            'height'=> 'numeric|nullable',
+            'special_description'=> 'string|nullable',
+
+            //timestamps
+            'createdAt'=> 'nullable',
+            'createdBy'=> 'nullable',
+            'updatedAt'=> 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -31,7 +62,7 @@ class ProductController extends BaseController
         }
 
         $product = Client::create($input);
-        return $this->sendResponse(new ClientResource($product), 'Customer created successfully.');
+        return $this->sendResponse(new ClientResource($product), 'Instruction Letter created successfully.');
 
     }
 
@@ -55,8 +86,39 @@ class ProductController extends BaseController
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            'name' => 'required',
-            'detail' => 'required',
+            //1
+            'customerId'=> 'integer|required|min:1',
+            'address'=> 'nullable',
+            'rfc' => 'nullable',
+            'email'=> 'email|nullable',
+            'phone_number'=> 'string|nullable',
+            //2
+            'type_service'=> 'numeric|required',
+            'reference'=> 'nullable',
+            'incoterm'=> 'in:EXW,FCA,CPT,CIP,DAP,DPU,DDP,CFR,FOB,FAS,CIF|required',
+            'type_equipment'=> 'string|required',
+            'pickup_address'=> 'string|required',
+            'pol'=> 'string|required',
+            'pod'=> 'string|required',
+            'delivery_address'=> 'required',
+            //3
+            'description'=> 'required',
+            'tariff'=> 'required|min:8|max:10',
+            'type_packaging'=> 'required',
+            'volume'=> 'numeric|required',
+            'weight'=> 'numeric|nullable',
+            'cbm'=> 'numeric|required',
+            'quantity'=> 'integer|nullable',
+            //4
+            'lenght'=> 'numeric|nullable',
+            'width'=> 'numeric|nullable',
+            'height'=> 'numeric|nullable',
+            'special_description'=> 'string|nullable',
+
+            //timestamps
+            'createdAt'=> 'nullable',
+            'createdBy'=> 'nullable',
+            'updatedAt'=> 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -64,9 +126,40 @@ class ProductController extends BaseController
             return $this->sendError('Validation Error.', $validator->errors());
 
         }
+        //1
+        $product->customerId = $input['customerId'];
+        $product->address = $input['address'];
+        $product->rfc = $input['rfc'];
+        $product->email = $input['email'];
+        $product->phone_number = $input['phone_number'];
+        //2
+        $product->type_service= $input['type_service'];
+        $product->reference= $input['reference'];
+        $product->incoterm= $input['incoterm'];
+        $product->type_equipment= $input['type_equipment'];
+        $product->pickup_address= $input['pickup_address'];
+        $product->pol= $input['pol'];
+        $product->pod= $input['pod'];
+        $product->delivery_address= $input['delivery_address'];
+        //3
+        $product->description= $input['description'];
+        $product->tariff= $input['tariff'];
+        $product->type_packaging= $input['type_packaging'];
+        $product->volume= $input['volume'];
+        $product->weight= $input['weight'];
+        $product->cbm= $input['cbm'];
+        $product->quantity= $input['quantity'];
+        //4
+        $product->lenght= $input['lenght'];
+        $product->width= $input['width'];
+        $product->height= $input['height'];
+        $product->special_description= $input['special_description'];
+        //timestamps
+        $product->createdAt= $input['createdAt'];
+        $product->createdBy= $input['createdBy'];
+        $product->updatedAt= $input['updatedAt'];
 
-        $product->name = $input['name'];
-        $product->detail = $input['detail'];
+        //guardar
         $product->save();
 
         return $this->sendResponse(new ClientResource($product), 'Customer updated successfully.');
