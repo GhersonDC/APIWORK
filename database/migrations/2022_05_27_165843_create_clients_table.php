@@ -21,13 +21,13 @@ class CreateClientsTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('type_service');
-            $table->string('reference')->nullable();
+            $table->integer('reference')->nullable();
             $table->enum("incoterm", ['EXW', 'FCA', 'CPT', 'CIP', 'DAP', 'DPU', 'DDP', 'CFR', 'FOB', 'FAS', 'CIF']);
             $table->string('type_equipment');
-            $table->string('pickup_address');
+            $table->integer('pickup_address');
             $table->string('pol');
             $table->string('pod');
-            $table->string('delivery_address');
+            $table->integer('delivery_address');
             $table->string('description');
             $table->string('tariff');
             $table->string('type_packaging');

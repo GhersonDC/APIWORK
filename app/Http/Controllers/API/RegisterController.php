@@ -16,8 +16,9 @@ class RegisterController extends BaseController
 
         $validator = Validator::make($request->all(), [
 
-            'name' => 'required',
+            'nombre' => 'required',
             'email' => 'required|email',
+            'rfc' => 'email:rfc',
             'password' => 'required',
             'c_password' => 'required|same:password',
 
@@ -28,12 +29,13 @@ class RegisterController extends BaseController
         }
 
         $input = $request->all();
+
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] = $user->createToken('MyApp')->accessToken;
-        $success['name'] = $user->name;
+        $success['nombre'] = $user->nombre;
 
-        return $this->sendResponse($success, 'Customer register successfully.');
+        return $this->sendResponse($success, 'Cliente creado satisfactoriamente.');
 
     }
 
@@ -44,13 +46,13 @@ class RegisterController extends BaseController
 
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
-            $success['name'] = $user->name;
+            $success['nombre'] = $user->nombre;
 
-            return $this->sendResponse($success, 'Customer login successfully.');
+            return $this->sendResponse($success, 'Login de Cliente correcto.');
 
         } else {
 
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            return $this->sendError('No autorizado.', ['error' => 'No autorizado, compruebe el token, email y password.']);
 
         }
 

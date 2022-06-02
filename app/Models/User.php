@@ -13,11 +13,48 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = "cliente";
+    protected $primaryKey ="clientid";
 
     protected $fillable = [
-        'name',
+        'nombre',
         'email',
         'password',
+        'number',
+        'number_old',
+        'usuarioid',
+        'rfc',
+        'tipo',
+        'direccion',
+        'colonia',
+        'ciudad',
+        'cp',
+        'estado',
+        'telefono',
+        'contacto',
+        'nextel',
+        'zoho_accountid',
+        'tipocargaid',
+        'activo',
+        'es_proveedor',
+        'nps_promedio',
+        'ces_promedio',
+        'intervalos_revision',
+        'dias_de_credito',
+        'especificaciones',
+        'portal',
+        'portal_usuario',
+        'portal_clave',
+        'almacen',
+        'transporte',
+        'facturacion',
+        'aamex',
+        'aausa',
+        'logo',
+        'shelter',
+        'esporadico',
+        'homol',
+        'envio_edo_cta',
+        'excluir_gbill',
     ];
 
     protected $hidden = [

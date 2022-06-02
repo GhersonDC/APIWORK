@@ -30,13 +30,13 @@ class ProductController extends BaseController
             'phone_number'=> 'string|nullable',
             //2
             'type_service'=> 'integer|required|min:1|max:6',
-            'reference'=> 'nullable',
+            'reference'=> 'integer|nullable',
             'incoterm'=> 'in:EXW,FCA,CPT,CIP,DAP,DPU,DDP,CFR,FOB,FAS,CIF|required',
             'type_equipment'=> 'string|required',
-            'pickup_address'=> 'string|required',
+            'pickup_address'=> 'integer|required',
             'pol'=> 'string|required',
             'pod'=> 'string|required',
-            'delivery_address'=> 'required',
+            'delivery_address'=> 'integer|required',
             //3
             'description'=> 'required',
             'tariff'=> 'required|min:8|max:10',
