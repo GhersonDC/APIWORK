@@ -15,7 +15,7 @@ class CreateClientsTable extends Migration
     {
         Schema::create('instructionletter', function (Blueprint $table) {
             $table->id();
-            $table->string('customerId'); //customer
+            $table->integer('customerId'); //customer
             $table->string('address')->nullable(); //tipo de servicio
             $table->string('rfc')->nullable(); //incoterm
             $table->string('email')->nullable();

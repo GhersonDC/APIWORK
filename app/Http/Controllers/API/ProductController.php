@@ -11,11 +11,11 @@ use Validator;
 class ProductController extends BaseController
 {
 
-    public function index()
-    {
-        $products = Client::all();
-        return $this->sendResponse(ClientResource::collection($products), 'Customer Instruction Letters retrieved successfully.');
-    }
+    // public function index($customerId)
+    // {
+
+        
+    // }
 
     public function store(Request $request)
     {
@@ -66,19 +66,13 @@ class ProductController extends BaseController
 
     }
 
-    public function show($id)
+    public function show($customerId)
     {
 
-        $product = Client::find($id);
-
-        if (is_null($product)) {
-
-            return $this->sendError('Customer Instruction Letters Not Found.');
-
-        }
-
-        return $this->sendResponse(new ClientResource($product), 'Customer Instruction Letters retrieved successfully.');
-
+        $products = Client::where("customerId","=",$customerId)
+        ->get();
+        
+        return $this->sendResponse($products, 'Customer Instruction Letters retrieved successfully.');
     }
 
     public function update(Request $request, Client $product)

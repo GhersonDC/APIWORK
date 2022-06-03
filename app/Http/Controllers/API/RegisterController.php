@@ -34,6 +34,7 @@ class RegisterController extends BaseController
         $user = User::create($input);
         $success['token'] = $user->createToken('MyApp')->accessToken;
         $success['nombre'] = $user->nombre;
+        $success['clientid'] = $user->clientid;
 
         return $this->sendResponse($success, 'Cliente creado satisfactoriamente.');
 
@@ -47,6 +48,7 @@ class RegisterController extends BaseController
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
             $success['nombre'] = $user->nombre;
+            $success['clientid'] = $user->clientid;
 
             return $this->sendResponse($success, 'Login de Cliente correcto.');
 
