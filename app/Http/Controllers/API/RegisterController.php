@@ -18,7 +18,9 @@ class RegisterController extends BaseController
 
             'nombre' => 'required',
             'email' => 'required|email',
-            'rfc' => 'email:rfc',
+            'rfc' => 'required',
+            'direccion'=> 'required',
+            'telefono'=> 'required',
             'password' => 'required',
             'c_password' => 'required|same:password',
 
@@ -35,6 +37,9 @@ class RegisterController extends BaseController
         $success['token'] = $user->createToken('MyApp')->accessToken;
         $success['nombre'] = $user->nombre;
         $success['clientid'] = $user->clientid;
+        $success['rfc'] = $user->rfc;
+        $success['direccion'] = $user->direccion;
+        $success['telefono'] = $user->telefono;
 
         return $this->sendResponse($success, 'Cliente creado satisfactoriamente.');
 
@@ -42,13 +47,15 @@ class RegisterController extends BaseController
 
     public function login(Request $request)
     {
-
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
             $success['nombre'] = $user->nombre;
             $success['clientid'] = $user->clientid;
+            $success['rfc'] = $user->rfc;
+            $success['direccion'] = $user->direccion;
+            $success['telefono'] = $user->telefono;
 
             return $this->sendResponse($success, 'Login de Cliente correcto.');
 

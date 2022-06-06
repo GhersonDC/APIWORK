@@ -3,7 +3,7 @@
 ## Crear archivo . env en carpeta principal
 
 ## configurar la base de datos
-
+php artisan key:generate
 ## Migrar tablas
 php artisan migrate
 
@@ -17,3 +17,4 @@ php artisan make:migration create_clients_table
 ## remigrar tablas ATENCION SOLO CORRER SI ES NECESARIO
 php artisan migrate:refresh --seed
 php artisan passport:install
+php artisan key:generate
