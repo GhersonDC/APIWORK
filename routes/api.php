@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\CatalogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,10 @@ Route::post('login', [RegisterController::class, 'login']); //LOGIN
 Route::middleware('auth:api')->group(function () {
     Route::resource('clients', ProductController::class); //GETALL
 });
+
+//catalogos
+Route::get('ports',[CatalogController::class,'ports']);
+Route::get('location',[CatalogController::class,'location']);
+Route::get('type_packaging',[CatalogController::class,'type_packaging']);
+Route::get('type_equipment',[CatalogController::class,'type_equipment']);
+Route::get('type_service',[CatalogController::class,'type_service']);
