@@ -70,6 +70,10 @@ class ProductController extends BaseController
     {
 
         $products = Client::where("customerId","=",$customerId)
+        ->join("servicetypecatalogletter","instructionletter.customerId","=","servicetypecatalogletter.id")
+        ->join("typeequipmentcatalog","instructionletter.customerId","=","typeequipmentcatalog.id")
+        ->join("typepackagingcatalog","instructionletter.customerId","=","typepackagingcatalog.id")
+        ->join("portcatalog","instructionletter.customerId","=","portcatalog.id")
         ->get();
         
         return $this->sendResponse($products, 'Customer Instruction Letters retrieved successfully.');
