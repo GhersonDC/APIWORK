@@ -20,7 +20,7 @@ Route::post('register', [RegisterController::class, 'register']); //REGISTRO
 Route::post('login', [RegisterController::class, 'login']); //LOGIN
 
 Route::middleware('auth:api')->group(function () {
-    Route::resource('clients', ProductController::class); //GETALL
+    Route::resource('clients', ProductController::class); //GETALL 
 });
 
 //catalogos
