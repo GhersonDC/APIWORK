@@ -32,7 +32,7 @@ class ProductController extends BaseController
             'type_service'=> 'integer|required|min:1|max:6',
             'reference'=> 'integer|nullable',
             'incoterm'=> 'in:EXW,FCA,CPT,CIP,DAP,DPU,DDP,CFR,FOB,FAS,CIF|required',
-            'type_equipment'=> 'string|required',
+            'type_equipment'=> 'integer|required',
             'pickup_address'=> 'integer|required',
             'pol'=> 'integer|required',
             'pod'=> 'integer|required',
